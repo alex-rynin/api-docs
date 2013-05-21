@@ -9,7 +9,11 @@ URL всех запросов API начинаются с префикса `http
 
 Если вы используете утилиту curl, то команду balance можно вызвать следующим образом
 ```shell
-curl -u 9267101280:secret -X POST -H 'Content-Type: application/xml' -d @balance.xml https://www.synq.ru/protocol/xml/balance
+curl -u 9267101280:secret \
+    -X POST \
+    -H 'Content-Type: application/xml' \
+    -d @balance.xml \
+    https://www.synq.ru/protocol/xml/balance
 ```
 
 где файл balance.xml содержит
