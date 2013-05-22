@@ -4,8 +4,8 @@
 Выполнение запроса
 ---------
 URL всех запросов API начинаются с префикса `https://www.synq.ru/protocol/xml/`. **Мы поддерживаем только HTTPS.**
-Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды balance URL будет `https://www.synq.ru/protocol/agent/balance`.
-Все команды платежного API используют HTTP метод POST и Content-Type `application/xml`.
+Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды balance URL будет `https://www.synq.ru/protocol/xml/balance`.
+Все команды платежного API используют метод POST и Content-Type `application/xml`.
 
 Если вы используете утилиту curl, то команду balance можно вызвать следующим образом
 ```shell
@@ -34,7 +34,7 @@ curl -u 9267101280:secret \
 ---------
 
 ### Запрос баланса счетов кошелька
-* `POST /balance` с телом
+* `POST /protocol/xml/balance` с телом
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -53,7 +53,7 @@ curl -u 9267101280:secret \
 ```
 
 ### Запрос списка провайдеров
-* `POST /provider` с телом
+* `POST /protocol/xml/provider` с телом
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -94,7 +94,7 @@ curl -u 9267101280:secret \
 ```
 
 ### Проведение платежей
-* `POST /payment` с телом
+* `POST /protocol/xml/payment` с телом
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -133,7 +133,7 @@ curl -u 9267101280:secret \
 Допускается указание нескольких элементов payment в элементе request для отправки нескольких платежей в одном запросе.
 
 ### Получение статуса платежа
-* `POST /status` с телом
+* `POST /protocol/xml/status` с телом
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
