@@ -1,4 +1,6 @@
-api-docs
+API Кошелька synq.ru
 ========
 
-Synq.ru API documentation
+
+* [Платежное API](https://github.com/synqru/api-docs/blob/master/payment-api.md)
+* [Агентское API (для пополнения кошельков)](https://github.com/synqru/api-docs/blob/master/agent-api.md)
