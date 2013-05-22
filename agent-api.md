@@ -19,7 +19,7 @@ curl -u user:pass https://www.synq.ru/protocol/agent/balance
 ---------
 
 ### Запрос баланса агента
-* `GET /balance` вернет баланс счета агента в копейках.
+* `GET /protocol/agent/balance` вернет баланс счета агента в копейках.
 
 ```xml
 <response>
@@ -28,7 +28,7 @@ curl -u user:pass https://www.synq.ru/protocol/agent/balance
 ```
 
 ### Проверка возможности пополнения кошелька
-* `GET /check?account=999&sum=100500` вернет результат проверки возможности пополнения кошелька 999 на сумму 100500 копеек.
+* `GET /protocol/agent/check?account=999&sum=100500` вернет результат проверки возможности пополнения кошелька 999 на сумму 100500 копеек.
 
 ```xml
 <response>
@@ -40,7 +40,7 @@ curl -u user:pass https://www.synq.ru/protocol/agent/balance
 пополнен на указанную в параметрах сумму.
 
 ### Пополнение кошелька
-* `POST /pay` с параметрами
+* `POST /protocol/agent/pay` с параметрами
 
 ```
 txn_id=999999999999&account=999&sum=100500
