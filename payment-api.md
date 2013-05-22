@@ -101,13 +101,13 @@ curl -u 9267101280:secret \
 <request>
     <protocol-version>1.00</protocol-version>
         <payment>
-                <client-transaction-id>1982</client-transaction-id >
+                <client-transaction-id>1982</client-transaction-id>
                 <amount>100</amount>
                 <service-id>453315258</service-id>
                 <extra name="phoneNumber">9267101280</extra>
         </payment>
     <payment>
-                <client-transaction-id>1983</client-transaction-id >
+                <client-transaction-id>1983</client-transaction-id>
                 <amount>100</amount>
                 <service-id>453315258</service-id>
                 <extra name="phoneNumber">9267101280</extra>
