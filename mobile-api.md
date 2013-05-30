@@ -43,3 +43,15 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 ```json
 {"exist": ["email", "phoneNumber"]}
 ```
+### Подтвержение телефона пользователя
+* `POST /protocol/mobile/confirm
+с телом
+
+```json
+{"phone": "9267101280", "pin": "123456"}
+```
+подтвердит номер телефона пользователя и вернет статус активации.
+
+```json
+{"activated": true}
+```
