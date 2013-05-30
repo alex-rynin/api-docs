@@ -21,6 +21,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 ### Проверка правильности учетных данных
 * `POST /protocol/mobile/auth`
 с телом
+
 ```json
 {"applicationId": "my cool app"}
 ```
