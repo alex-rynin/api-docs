@@ -28,7 +28,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 вернет статус 200 в случае, если переданные учетные данные верны. В противном случает будет 401.
 
 ### Регистрация пользователя
-* `POST /protocol/mobile/register
+* `POST /protocol/mobile/register`
 
 ```json
 {"phone": "9267101280", "email": "someone@example.com", "password": "p@$$w0rd"}
@@ -44,7 +44,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 {"exist": ["email", "phoneNumber"]}
 ```
 ### Подтвержение телефона пользователя
-* `POST /protocol/mobile/confirm
+* `POST /protocol/mobile/confirm`
 с телом
 
 ```json
