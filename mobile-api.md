@@ -19,17 +19,18 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 ---------
 
 ### Проверка правильности учетных данных
-* `POST /protocol/mobile/auth` вернет статус 200 в случае, если переданные учетные данные верны.
-
+* `POST /protocol/mobile/auth`
+с телом
 ```json
 {"applicationId": "my cool app"}
 ```
+вернет статус 200 в случае, если переданные учетные данные верны. В противном случает будет 401.
 
 ### Регистрация пользователя
 * `POST /protocol/mobile/register
 
 ```json
-{"phone": "9267101280", "email": "someone@example.com", "password": p@$$w0rd}
+{"phone": "9267101280", "email": "someone@example.com", "password": "p@$$w0rd"}
 ```
 вернет
 ```json
