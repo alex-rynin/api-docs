@@ -46,7 +46,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 {"exist": ["email", "phoneNumber"]}
 ```
 
-После успешной регистрации требуется подтвердить используемый номер телефона с помощью команды confirm.
+После успешной регистрации требуется подтвердить используемый номер телефона с помощью команды `confirm`.
 
 ### Подтвержение телефона пользователя
 * `POST /protocol/mobile/confirm`
