@@ -33,6 +33,18 @@ curl -u 9267101280:secret \
 Команды API
 ---------
 
+### Запрос на привязку кошелька к партнеру
+* `POST /protocol/xml/rebind` с телом
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<request>
+    <protocol-version>1.00</protocol-version>
+    <partner>my_partner_code</partner>
+</request>
+```
+приведет к привязке кошелька к партнеру с кодом `my_partner_code`.
+
 ### Запрос баланса счетов кошелька
 * `POST /protocol/xml/balance` с телом
 
