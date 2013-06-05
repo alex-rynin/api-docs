@@ -43,7 +43,21 @@ curl -u 9267101280:secret \
     <partner>my_partner_code</partner>
 </request>
 ```
-приведет к привязке кошелька к партнеру с кодом `my_partner_code`.
+вернет
+
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response/>
+```
+и приведет к привязке кошелька к партнеру с кодом `my_partner_code`.
+В случае, если будет передан несуществующий код партнера, запрос вернет ошибку:
+
+```xml
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<response>
+    <error>no_such_partner</error>
+</response>
+```
 
 ### Запрос баланса счета кошелька
 * `POST /protocol/xml/balance` с телом
