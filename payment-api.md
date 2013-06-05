@@ -45,7 +45,7 @@ curl -u 9267101280:secret \
 ```
 приведет к привязке кошелька к партнеру с кодом `my_partner_code`.
 
-### Запрос баланса счетов кошелька
+### Запрос баланса счета кошелька
 * `POST /protocol/xml/balance` с телом
 
 ```xml
@@ -54,13 +54,12 @@ curl -u 9267101280:secret \
     <protocol-version>1.00</protocol-version>
 </request>
 ```
-вернет баланс счетов кошелька в копейках:
+вернет баланс счета кошелька в копейках:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <response>
-    <extra name="27">100500</extra>
-    <extra name="62">362</extra>
+    <extra name="27">100500</extra>    
 </response>
 ```
 
