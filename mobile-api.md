@@ -5,6 +5,7 @@ API мобильных устройств synq.ru
 ---------
 URL всех запросов API начинаются с префикса `https://www.synq.ru/protocol/mobile/`. **Мы поддерживаем только HTTPS.**
 Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды providers URL будет `https://www.synq.ru/protocol/mobile/providers`.
+Для представления запросов и ответов используется формат JSON.
 Если вы используете утилиту curl, то команду providers можно вызвать следующим образом
 ```shell
 curl -u user:pass https://www.synq.ru/protocol/mobile/providers
@@ -59,4 +60,61 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 
 ```json
 {"activated": true}
+```
+
+
+### Загрузка справочника провайдеров
+
+* `GET /protocol/mobile/providers`
+
+вернет справочник провайдеров с разбиением по группам
+
+```json
+[ {
+  "id" : 5,
+  "name" : "Мобильная связь СНГ",
+  "providers" : [ {
+    "id" : 710881731,
+    "name" : "MegaCom(АльфаТелеком) Кыргызстан (7)"
+  }, {
+    "id" : 518042683,
+    "name" : "Билайн-Армения(АрменТел) (7)"
+  } ]
+}, {
+  "id" : 6,
+  "name" : "Мобильная связь",
+  "providers" : [ {
+    "id" : 750739964,
+    "name" : "Tele2 без комиссии"
+  }, {
+    "id" : 890983449,
+    "name" : "Билайн без комиссии"
+  }]
+}]
+```
+
+### Загрузка описания провайдера
+
+* `GET /protocol/mobile/providers/${providerId}`
+
+вернет описание провайдера, например:
+
+```json
+{
+  "id" : 890983449,
+  "name" : "Билайн без комиссии",
+  "minsum" : 2,
+  "maxsum" : 15000,
+  "parameters" : [ {
+    "id" : 971,
+    "code" : "phoneNumber",
+    "minLength" : 10,
+    "maxLength" : 10,
+    "title" : "Номер телефона",
+    "pattern" : null,
+    "type" : null,
+    "patternDescription" : "10-ти значный федеральный номер",
+    "main" : true
+  } ]
+}
 ```
