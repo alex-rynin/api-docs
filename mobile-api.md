@@ -3,12 +3,12 @@ API мобильных устройств synq.ru
 
 Выполнение запроса
 ---------
-URL всех запросов API начинаются с префикса `https://www.synq.ru/protocol/mobile/`. **Мы поддерживаем только HTTPS.**
-Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды providers URL будет `https://www.synq.ru/protocol/mobile/providers`.
+URL всех запросов API начинаются с префикса `https://www.synq.ru/protocol/mobile/v1/`. **Мы поддерживаем только HTTPS.**
+Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды providers URL будет `https://www.synq.ru/protocol/mobile/v1/providers`.
 Для представления запросов и ответов используется формат JSON.
 Если вы используете утилиту curl, то команду providers можно вызвать следующим образом
 ```shell
-curl -u user:pass https://www.synq.ru/protocol/mobile/providers
+curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
 ```
 
 Аутентификация
@@ -22,7 +22,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 ---------
 
 ### Проверка правильности учетных данных
-* `POST /protocol/mobile/auth`
+* `POST /protocol/mobile/v1/auth`
 с телом
 
 ```json
@@ -31,7 +31,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 вернет статус `200` в случае, если переданные учетные данные верны. В противном случает будет `401`.
 
 ### Регистрация пользователя
-* `POST /protocol/mobile/register`
+* `POST /protocol/mobile/v1/register`
 
 ```json
 {"phone": "9267101280", "email": "someone@example.com", "password": "p@$$w0rd"}
@@ -50,7 +50,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 После успешной регистрации требуется подтвердить используемый номер телефона с помощью команды `confirm`.
 
 ### Подтвержение телефона пользователя
-* `POST /protocol/mobile/confirm`
+* `POST /protocol/mobile/v1/confirm`
 с телом
 
 ```json
@@ -65,7 +65,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 
 ### Загрузка справочника провайдеров
 
-* `GET /protocol/mobile/providers`
+* `GET /protocol/mobile/v1/providers`
 
 вернет справочник провайдеров с разбиением по группам
 
@@ -95,7 +95,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/providers
 
 ### Загрузка описания провайдера
 
-* `GET /protocol/mobile/providers/${providerId}`
+* `GET /protocol/mobile/v1/providers/${providerId}`
 
 вернет описание провайдера, например:
 
