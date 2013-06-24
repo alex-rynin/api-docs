@@ -3,8 +3,8 @@
 
 Выполнение запроса
 ---------
-URL всех запросов API начинаются с префикса `https://www.synq.ru/protocol/xml/`. **Мы поддерживаем только HTTPS.**
-Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды balance URL будет `https://www.synq.ru/protocol/xml/balance`.
+URL всех запросов API начинаются с префикса `https://www.synq.ru/protocol/payment/v1/`. **Мы поддерживаем только HTTPS.**
+Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды balance URL будет `https://www.synq.ru/protocol/payment/v1/balance`.
 Все команды платежного API используют метод POST и Content-Type `application/xml`.
 
 Если вы используете утилиту curl, то команду balance можно вызвать следующим образом
@@ -13,7 +13,7 @@ curl -u 9267101280:secret \
     -X POST \
     -H 'Content-Type: application/xml' \
     -d @balance.xml \
-    https://www.synq.ru/protocol/xml/balance
+    https://www.synq.ru/protocol/payment/v1/balance
 ```
 
 где файл balance.xml содержит
@@ -34,7 +34,7 @@ curl -u 9267101280:secret \
 ---------
 
 ### Запрос на привязку кошелька к партнеру
-* `POST /protocol/xml/rebind` с телом
+* `POST /protocol/payment/v1/rebind` с телом
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -60,7 +60,7 @@ curl -u 9267101280:secret \
 ```
 
 ### Запрос баланса счета кошелька
-* `POST /protocol/xml/balance` с телом
+* `POST /protocol/payment/v1/balance` с телом
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -78,7 +78,7 @@ curl -u 9267101280:secret \
 ```
 
 ### Запрос списка провайдеров
-* `POST /protocol/xml/provider` с телом
+* `POST /protocol/payment/v1/provider` с телом
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -119,7 +119,7 @@ curl -u 9267101280:secret \
 ```
 
 ### Проведение платежей
-* `POST /protocol/xml/payment` с телом
+* `POST /protocol/payment/v1/payment` с телом
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -158,7 +158,7 @@ curl -u 9267101280:secret \
 Допускается указание нескольких элементов payment в элементе request для отправки нескольких платежей в одном запросе.
 
 ### Получение статуса платежа
-* `POST /protocol/xml/status` с телом
+* `POST /protocol/payment/v1/status` с телом
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
