@@ -3,7 +3,7 @@ API пополнения кошельков synq.ru
 
 Выполнение запроса
 ---------
-URL всех запросов API начинаются с префикса `https://www.synq.ru/protocol/agent/`. **Мы поддерживаем только HTTPS.**
+URL всех запросов API начинаются с префикса `https://www.synq.ru/protocol/agent/v1/`. **Мы поддерживаем только HTTPS.**
 Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды balance URL будет `https://www.synq.ru/protocol/agent/balance`.
 Если вы используете утилиту curl, то команду balance можно вызвать следующим образом
 ```shell
@@ -19,7 +19,7 @@ curl -u user:pass https://www.synq.ru/protocol/agent/balance
 ---------
 
 ### Запрос баланса агента
-* `GET /protocol/agent/balance` вернет баланс счета агента в копейках.
+* `GET /protocol/agent/v1/balance` вернет баланс счета агента в копейках.
 
 ```xml
 <response>
@@ -28,7 +28,7 @@ curl -u user:pass https://www.synq.ru/protocol/agent/balance
 ```
 
 ### Проверка возможности пополнения кошелька
-* `GET /protocol/agent/check?account=999&sum=100500` вернет результат проверки возможности пополнения кошелька 999 на сумму 100500 копеек.
+* `GET /protocol/agent/v1/check?account=999&sum=100500` вернет результат проверки возможности пополнения кошелька 999 на сумму 100500 копеек.
 
 ```xml
 <response>
@@ -40,7 +40,7 @@ curl -u user:pass https://www.synq.ru/protocol/agent/balance
 пополнен на указанную в параметрах сумму.
 
 ### Пополнение кошелька
-* `POST /protocol/agent/pay` с параметрами
+* `POST /protocol/agent/v1/pay` с параметрами
 
 ```
 txn_id=999999999999&account=999&sum=100500
