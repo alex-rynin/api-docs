@@ -4,10 +4,10 @@ API пополнения кошельков synq.ru
 Выполнение запроса
 ---------
 URL всех запросов API начинаются с префикса `https://www.synq.ru/protocol/agent/v1/`. **Мы поддерживаем только HTTPS.**
-Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды balance URL будет `https://www.synq.ru/protocol/agent/balance`.
+Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды balance URL будет `https://www.synq.ru/protocol/agent/v1/balance`.
 Если вы используете утилиту curl, то команду balance можно вызвать следующим образом
 ```shell
-curl -u user:pass https://www.synq.ru/protocol/agent/balance
+curl -u user:pass https://www.synq.ru/protocol/agent/v1/balance
 ```
 
 Аутентификация
