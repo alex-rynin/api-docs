@@ -62,6 +62,57 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
 {"activated": true}
 ```
 
+### Загрузка счетов кошелька
+
+* `GET /protocol/mobile/v1/accounts`
+
+вернет идентификаторы, имена и балансы счетов кошелька. Баланс счетов, как и везде, в копейках.
+
+```json
+[ {
+  "id" : 27,
+  "name" : "acct# 01",
+  "amount" : 4201
+}, {
+  "id" : 62,
+  "name" : "Ещё один счет",
+  "amount" : 100
+}, {
+  "id" : 75,
+  "name" : "Дополнительный",
+  "amount" : 0
+}, {
+  "id" : 104,
+  "name" : "Дополнительный 1",
+  "amount" : 0
+} ]
+
+```
+
+### Создание счета в кошельке
+
+* `POST /protocol/mobile/v1/accounts`
+
+вернет идентификатор нового счета
+
+```json
+{"accountId" : 27}
+
+```
+
+### Переименование счета
+
+* `POST /protocol/mobile/v1/accounts/27`
+
+с телом
+
+```json
+{"name" : "Мой новый счет"}
+```
+
+переименует счет с ID 27.
+
+
 
 ### Загрузка справочника провайдеров
 
@@ -117,4 +168,108 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
     "main" : true
   } ]
 }
+```
+
+
+### Отправка платежа
+
+* `POST /protocol/mobile/v1/pay`
+
+с телом
+
+```json
+{
+  "serviceId" : 453315258,
+  "account" : 27,
+  "amount" : 100.
+  "parameters" : {"phoneNumber" : "9267101280"}
+}
+```
+
+отправит платеж на 1 рубль на номер 9267101280  со счета 27 и вернет ID платежа.
+
+```json
+{
+  "transactionId" : 4654456882  
+}
+```
+
+### Перевод между счетами кошельков
+
+* `POST /protocol/mobile/v1/transfer`
+
+с телом
+
+```json
+{
+  "source" : 27,
+  "destination" : 42,
+  "amount": 100
+}
+```
+
+отправит перевод на 1 рубль с 27 на 42 счет. Счет назначения может быть задан номером счета, номером телефона кошелька 
+или email кошелька.
+Результатом выполнения команды будет ID платежной транзакции.
+
+
+отправит платеж на 1 рубль на номер 9267101280  со счета 27 и вернет ID платежа.
+
+```json
+{
+  "transactionId" : 4654456882  
+}
+```
+
+### Сохранение геометки платежа
+
+* `POST /protocol/mobile/v1/location`
+
+с телом
+
+```json
+{
+  "transactionId" : 4654456882,
+  "location": {"latitude" : 23.45, "longitude" : 45.34}
+}
+```
+
+ассоциирует с платежной транзакцией геометку.
+
+
+### Получение истории транзакций по счету
+
+* `GET /protocol/mobile/v1/history/27/20130623/20130704`
+
+вернет историю платежных транзакций по 27 счету между 23 июня и 4 июля 2013.
+
+
+```json
+{
+  "history" : [ {
+    "id" : 5074,
+    "date" : 1372174037178,
+    "amount" : 100,
+    "sourceAccountId" : 27,
+    "destinationAccountId" : 3,
+    "transactionType" : "PAY",
+    "location" : null
+  }, {
+    "id" : 5082,
+    "date" : 1372251562237,
+    "amount" : 100,
+    "sourceAccountId" : 27,
+    "destinationAccountId" : 3,
+    "transactionType" : "PAY",
+    "location" : null
+  }, {
+    "id" : 5084,
+    "date" : 1372251800462,
+    "amount" : 100,
+    "sourceAccountId" : 27,
+    "destinationAccountId" : 3,
+    "transactionType" : "PAY",
+    "location" : null
+  } ]
+
 ```
