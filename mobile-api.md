@@ -66,7 +66,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
 
 * `GET /protocol/mobile/v1/accounts`
 
-вернет идентификаторы, имена и балансы счетов кошелька. Баланс счетов, как и везде, в копейках.
+вернет идентификаторы, имена и балансы счетов кошелька. Баланс счетов, как и везде, в рублях.
 
 ```json
 [ {
@@ -181,7 +181,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
 {
   "serviceId" : 453315258,
   "account" : 27,
-  "amount" : 100.
+  "amount" : 1
   "parameters" : {"phoneNumber" : "9267101280"}
 }
 ```
@@ -204,7 +204,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
 {
   "source" : 27,
   "destination" : 42,
-  "amount": 100
+  "amount": 1
 }
 ```
 
@@ -237,6 +237,35 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
 ассоциирует с платежной транзакцией геометку.
 
 
+### Поиск пользователей по телефонам/адресам эл. почты
+
+* `POST /protocol/mobile/v1/findUsers`
+
+с телом
+
+```json
+{
+"logins": ["+79267101280", "alexander@yanyshin.ru"]
+}
+
+```
+
+вернет список найденных пользователей:
+
+```json
+[ {
+  "id" : 47,
+  "phone" : "9267101280",
+  "email" : "alexander@yanyshin.ru"
+}, 
+{
+  "id" : 62,
+  "phone" : "+79267101280",
+  "email" : null
+} ]
+
+```
+
 ### Получение истории транзакций по счету
 
 * `GET /protocol/mobile/v1/history/27/20130623/20130704`
@@ -249,7 +278,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
   "history" : [ {
     "id" : 5074,
     "date" : 1372174037178,
-    "amount" : 100,
+    "amount" : 1,
     "sourceAccountId" : 27,
     "destinationAccountId" : 3,
     "transactionType" : "PAY",
@@ -257,7 +286,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
   }, {
     "id" : 5082,
     "date" : 1372251562237,
-    "amount" : 100,
+    "amount" : 1,
     "sourceAccountId" : 27,
     "destinationAccountId" : 3,
     "transactionType" : "PAY",
@@ -265,7 +294,7 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
   }, {
     "id" : 5084,
     "date" : 1372251800462,
-    "amount" : 100,
+    "amount" : 1,
     "sourceAccountId" : 27,
     "destinationAccountId" : 3,
     "transactionType" : "PAY",
