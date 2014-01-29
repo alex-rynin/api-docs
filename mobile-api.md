@@ -5,7 +5,7 @@ API мобильных устройств synq.ru
 ---------
 URL всех запросов API начинаются с префикса `https://www.synq.ru/protocol/mobile/v1/`. **Мы поддерживаем только HTTPS.**
 Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды providers URL будет `https://www.synq.ru/protocol/mobile/v1/providers`.
-Для представления запросов и ответов используется формат JSON.
+Для представления запросов и ответов используется формат JSON. Используйте content-type: application/json.
 Если вы используете утилиту curl, то команду providers можно вызвать следующим образом
 ```shell
 curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
@@ -28,7 +28,18 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
 ```json
 {"applicationId": "my cool app"}
 ```
-вернет статус `200` в случае, если переданные учетные данные верны. В противном случает будет `401`.
+
+вернет статус `200` и данные пользователя 
+
+```json
+{
+  "id" : 47,
+  "phone" : "9267101280",
+  "email" : "alexander@yanyshin.ru"
+}
+```
+
+в случае, если переданные учетные данные верны. В противном случает будет `401`.
 
 ### Регистрация пользователя
 * `POST /protocol/mobile/v1/register`
