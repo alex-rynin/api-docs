@@ -85,7 +85,7 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
     "exception" : "ActivationException"
   },
   "data" : {
-    "activated" : "false"
+    "activated" : false
   }
 }
 ```
