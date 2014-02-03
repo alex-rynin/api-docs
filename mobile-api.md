@@ -1,14 +1,14 @@
-API мобильных устройств synq.ru
+API mserver
 =========
 
 Выполнение запроса
 ---------
-URL всех запросов API начинаются с префикса `https://www.synq.ru/protocol/mobile/v1/`. **Мы поддерживаем только HTTPS.**
-Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды providers URL будет `https://www.synq.ru/protocol/mobile/v1/providers`.
+URL всех запросов API начинаются с префикса `https://www.synq.ru/mserver-dev/protocol/mobile/v1/`. **Мы поддерживаем только HTTPS.**
+Для того, чтобы выполнить команду протокола нужно склеить префикс с именем команды, например, для команды providers URL будет `https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers`.
 Для представления запросов и ответов используется формат JSON. Используйте content-type: application/json.
 Если вы используете утилиту curl, то команду providers можно вызвать следующим образом
 ```shell
-curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
+curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 ```
 
 Аутентификация
@@ -21,8 +21,58 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
 Команды API
 ---------
 
+### Регистрация пользователя
+ 
+ `curl -d '{"phone": "79267101280", "password": "123456"}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/register`
+
+вернет
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "userId" : 181
+  }
+}
+```
+если пользователь успешно создан.
+В случае, если пользователь с таким email или phone уже существует, в ответе будет
+
+```json
+{
+  "meta" : {
+    "status" : 400,
+    "code" : 400,
+    "developerMessage" : "User already exist",
+    "moreInfoUrl" : "https://www.synq.ru",
+    "exception" : "UserExistException"
+  },
+  "data" : {
+    "PHONE_EXIST" : "79267101280"
+  }
+}
+
+```
+
+После успешной регистрации требуется подтвердить используемый номер телефона с помощью команды `confirm`.
+
+### Подтвержение телефона пользователя
+* `POST /protocol/mobile/v1/confirm`
+с телом
+
+```json
+{"phone": "9267101280", "pin": "123456"}
+```
+подтвердит номер телефона пользователя и вернет статус активации.
+
+```json
+{"activated": true}
+```
+
+
 ### Проверка правильности учетных данных
-* `POST /protocol/mobile/v1/auth`
+* `POST /auth`
 с телом
 
 ```json
@@ -40,38 +90,6 @@ curl -u user:pass https://www.synq.ru/protocol/mobile/v1/providers
 ```
 
 в случае, если переданные учетные данные верны. В противном случает будет `401`.
-
-### Регистрация пользователя
-* `POST /protocol/mobile/v1/register`
-
-```json
-{"phone": "9267101280", "email": "someone@example.com", "password": "p@$$w0rd"}
-```
-вернет
-```json
-{"userId": 13}
-```
-если пользователь успешно создан.
-В случае, если пользователь с таким email или phone уже существует, в ответе будет
-
-```json
-{"exist": ["email", "phoneNumber"]}
-```
-
-После успешной регистрации требуется подтвердить используемый номер телефона с помощью команды `confirm`.
-
-### Подтвержение телефона пользователя
-* `POST /protocol/mobile/v1/confirm`
-с телом
-
-```json
-{"phone": "9267101280", "pin": "123456"}
-```
-подтвердит номер телефона пользователя и вернет статус активации.
-
-```json
-{"activated": true}
-```
 
 ### Загрузка счетов кошелька
 
