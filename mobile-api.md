@@ -361,73 +361,49 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Перевод между счетами кошельков
 
-* `POST /protocol/mobile/v1/transfer`
+ `curl -u 79267101280:123456 -d '{"source": 162, "destination": "161", "amount": 1}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/transfer`
 
-с телом
-
-```json
-{
-  "source" : 27,
-  "destination" : 42,
-  "amount": 1
-}
-```
-
-отправит перевод на 1 рубль с 27 на 42 счет. Счет назначения может быть задан номером счета, номером телефона кошелька 
+отправит перевод на 1 рубль с 162 на 161 счет. Счет назначения может быть задан номером счета, номером телефона кошелька 
 или email кошелька.
 Результатом выполнения команды будет ID платежной транзакции.
 
 
-отправит платеж на 1 рубль на номер 9267101280  со счета 27 и вернет ID платежа.
-
 ```json
 {
-  "transactionId" : 4654456882  
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "transactionId" : 1868
+  }
 }
 ```
-
-### Сохранение геометки платежа
-
-* `POST /protocol/mobile/v1/location`
-
-с телом
-
-```json
-{
-  "transactionId" : 4654456882,
-  "location": {"latitude" : 23.45, "longitude" : 45.34}
-}
-```
-
-ассоциирует с платежной транзакцией геометку.
 
 
 ### Поиск пользователей по телефонам/адресам эл. почты
 
-* `POST /protocol/mobile/v1/findUsers`
+ `curl -u 79267101280:123456 -d '{"logins": ["79267101280", "alexander@yanyshin.ru"]}' -H 'Content-type:application/json' http://localhost:8080/protocol/mobile/v1/findUsers`
 
-с телом
-
-```json
-{
-"logins": ["+79267101280", "alexander@yanyshin.ru"]
-}
-
-```
 
 вернет список найденных пользователей:
 
 ```json
-[ {
-  "id" : 47,
-  "phone" : "9267101280",
-  "email" : "alexander@yanyshin.ru"
-}, 
 {
-  "id" : 62,
-  "phone" : "+79267101280",
-  "email" : null
-} ]
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : [ {
+    "id" : 47,
+    "phone" : "9267101280",
+    "email" : "alexander@yanyshin.ru",
+    "active" : true
+  }, {
+    "id" : 181,
+    "phone" : "79267101280",
+    "email" : null,
+    "active" : true
+  } ]
+}
 
 ```
 
