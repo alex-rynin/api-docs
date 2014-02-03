@@ -138,93 +138,185 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
   "meta" : {
     "code" : "200"
   },
-  "data" : [ {
-    "id" : 161,
-    "name" : "Основной",
-    "amount" : 0
-  } ]
+  "data" : {
+    "main" : {
+      "id" : 161,
+      "name" : "Основной",
+      "amount" : 0
+    },
+    "all" : [ {
+      "id" : 161,
+      "name" : "Основной",
+      "amount" : 0
+    }, {
+      "id" : 162,
+      "name" : "test",
+      "amount" : 10
+    }, {
+      "id" : 163,
+      "name" : "Дополнительный",
+      "amount" : 0
+    } ]
+  }
 }
 
 ```
 
 ### Создание счета в кошельке
 
-* `POST /protocol/mobile/v1/accounts`
+ `curl -u 79267101280:123456 -X POST https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts`
 
 вернет идентификатор нового счета
 
 ```json
-{"accountId" : 27}
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "accountId" : 162
+  }
+}
 
 ```
 
 ### Переименование счета
 
-* `POST /protocol/mobile/v1/accounts/27`
-
-с телом
+ `curl -u 79267101280:123456 -d '{"name": "test"}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts/162`
 
 ```json
-{"name" : "Мой новый счет"}
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "id" : 162,
+    "name" : "test",
+    "amount" : 0
+  }
+}
 ```
 
-переименует счет с ID 27.
+переименует счет с ID 162.
 
 
 
 ### Загрузка справочника провайдеров
 
-* `GET /protocol/mobile/v1/providers`
+ `curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers`
 
 вернет справочник провайдеров с разбиением по группам
 
 ```json
-[ {
-  "id" : 5,
-  "name" : "Мобильная связь СНГ",
-  "providers" : [ {
-    "id" : 710881731,
-    "name" : "MegaCom(АльфаТелеком) Кыргызстан (7)"
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : [ {
+    "id" : 3,
+    "name" : "Мобильная связь",
+    "providers" : [ {
+      "id" : "453315258",
+      "name" : "Мегафон"
+    }, {
+      "id" : "750739964",
+      "name" : "Теле2"
+    }, {
+      "id" : "890983449",
+      "name" : "Билайн"
+    }, {
+      "id" : "540792152",
+      "name" : "МТС"
+    } ]
   }, {
-    "id" : 518042683,
-    "name" : "Билайн-Армения(АрменТел) (7)"
+    "id" : 12,
+    "name" : "Игры",
+    "providers" : [ ]
+  }, {
+    "id" : 5,
+    "name" : "Интернет",
+    "providers" : [ ]
+  }, {
+    "id" : 4,
+    "name" : "Цифровое телевидение",
+    "providers" : [ ]
+  }, {
+    "id" : 6,
+    "name" : "Телефония",
+    "providers" : [ {
+      "id" : "309194856",
+      "name" : "МГТС"
+    } ]
+  }, {
+    "id" : 7,
+    "name" : "Коммунальные платежи",
+    "providers" : [ ]
+  }, {
+    "id" : 8,
+    "name" : "Платежные системы",
+    "providers" : [ ]
+  }, {
+    "id" : 9,
+    "name" : "Банковские услуги",
+    "providers" : [ ]
+  }, {
+    "id" : 13,
+    "name" : "Туристические компании",
+    "providers" : [ ]
+  }, {
+    "id" : 10,
+    "name" : "Прочее",
+    "providers" : [ ]
+  }, {
+    "id" : 2,
+    "name" : "Мобильная связь СНГ",
+    "providers" : [ ]
+  }, {
+    "id" : 11,
+    "name" : "Тестовые сервисы",
+    "providers" : [ ]
   } ]
-}, {
-  "id" : 6,
-  "name" : "Мобильная связь",
-  "providers" : [ {
-    "id" : 750739964,
-    "name" : "Tele2 без комиссии"
-  }, {
-    "id" : 890983449,
-    "name" : "Билайн без комиссии"
-  }]
-}]
+}
 ```
 
 ### Загрузка описания провайдера
 
-* `GET /protocol/mobile/v1/providers/${providerId}`
+ `curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers/309194856`
 
 вернет описание провайдера, например:
 
 ```json
 {
-  "id" : 890983449,
-  "name" : "Билайн без комиссии",
-  "minsum" : 2,
-  "maxsum" : 15000,
-  "parameters" : [ {
-    "id" : 971,
-    "code" : "phoneNumber",
-    "minLength" : 10,
-    "maxLength" : 10,
-    "title" : "Номер телефона",
-    "pattern" : null,
-    "type" : null,
-    "patternDescription" : "10-ти значный федеральный номер",
-    "main" : true
-  } ]
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "id" : 309194856,
+    "name" : "МГТС (2)",
+    "minsum" : 1,
+    "maxsum" : 15000,
+    "parameters" : [ {
+      "id" : 1068,
+      "code" : "appartment",
+      "minLength" : null,
+      "maxLength" : null,
+      "title" : "Номер квартиры",
+      "pattern" : null,
+      "type" : null,
+      "patternDescription" : "Номер квартиры",
+      "main" : false
+    }, {
+      "id" : 1069,
+      "code" : "phoneNumber",
+      "minLength" : 10,
+      "maxLength" : 10,
+      "title" : "№ телефона (10 цифр)",
+      "pattern" : null,
+      "type" : null,
+      "patternDescription" : "№ телефона (10 цифр)",
+      "main" : true
+    } ]
+  }
 }
 ```
 
