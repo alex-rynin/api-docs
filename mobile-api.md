@@ -58,16 +58,36 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 После успешной регистрации требуется подтвердить используемый номер телефона с помощью команды `confirm`.
 
 ### Подтвержение телефона пользователя
-* `POST /protocol/mobile/v1/confirm`
-с телом
-
-```json
-{"phone": "9267101280", "pin": "123456"}
-```
+ `curl -d '{"phone": "79267101280", "pin": "123456"}' -H 'Content-type:application/json' http://localhost:8080/protocol/mobile/v1/confirm`
 подтвердит номер телефона пользователя и вернет статус активации.
 
 ```json
-{"activated": true}
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "activated" : true
+  }
+}
+```
+
+
+в случае неверного PIN кода ответ будет вида
+
+```json
+{
+  "meta" : {
+    "status" : 400,
+    "code" : 400,
+    "developerMessage" : "Failed to activate user. Wrong PIN.",
+    "moreInfoUrl" : "https://www.synq.ru",
+    "exception" : "ActivationException"
+  },
+  "data" : {
+    "activated" : "false"
+  }
+}
 ```
 
 
