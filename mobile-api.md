@@ -23,7 +23,13 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Регистрация пользователя
  
- `curl -d '{"phone": "79267101280", "password": "123456"}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/register`
+```shell
+
+curl -d '{"phone": "79267101280", "password": "123456"}' \
+ -H 'Content-type:application/json' \
+ https://www.synq.ru/mserver-dev/protocol/mobile/v1/register
+
+```
 
 вернет
 ```json
@@ -58,7 +64,12 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 После успешной регистрации требуется подтвердить используемый номер телефона с помощью команды `confirm`.
 
 ### Подтвержение телефона пользователя
- `curl -d '{"phone": "79267101280", "pin": "123456"}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/confirm`
+```shell
+curl -d '{"phone": "79267101280", "pin": "123456"}' \ 
+-H 'Content-type:application/json' \ 
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/confirm`
+```
+
 подтвердит номер телефона пользователя и вернет статус активации.
 
 ```json
@@ -92,8 +103,11 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 
 ### Проверка правильности учетных данных
- `curl -d '{"login":"79267101280", "password": "123456"}' -H  'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/auth`
-
+```shell
+curl -d '{"login":"79267101280", "password": "123456"}' \
+-H  'Content-type:application/json' \
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/auth`
+```
 
 вернет статус `200` и данные пользователя 
 
@@ -129,7 +143,9 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Загрузка счетов кошелька
 
- `curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts`
+```shell
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts
+```
 
 вернет идентификаторы, имена и балансы счетов кошелька. Баланс счетов, как и везде, в рублях.
 
@@ -164,7 +180,9 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Создание счета в кошельке
 
- `curl -u 79267101280:123456 -X POST https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts`
+```shell
+curl -u 79267101280:123456 -X POST https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts`
+```
 
 вернет идентификатор нового счета
 
@@ -182,7 +200,11 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Переименование счета
 
- `curl -u 79267101280:123456 -d '{"name": "test"}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts/162`
+```shell
+curl -u 79267101280:123456 -d '{"name": "test"}' \
+-H 'Content-type:application/json' \
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts/162`
+```
 
 ```json
 {
@@ -203,7 +225,9 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Загрузка справочника провайдеров
 
- `curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers`
+```shell
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers`
+```
 
 вернет справочник провайдеров с разбиением по группам
 
@@ -281,7 +305,9 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Загрузка описания провайдера
 
- `curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers/309194856`
+```shell
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers/309194856`
+```
 
 вернет описание провайдера, например:
 
@@ -323,7 +349,12 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Отправка платежа
 
- `curl -u 79267101280:123456 -d '{"serviceId": "453315258", "account": 162, "amount": 1, "parameters": {"phoneNumber": "9267101280"}}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/pay`
+```shell
+curl -u 79267101280:123456 \
+-d '{"serviceId": "453315258", "account": 162, "amount": 1, "parameters": {"phoneNumber": "9267101280"}}' \
+-H 'Content-type:application/json' \
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/pay
+```
 
 
 отправит платеж на 1 рубль на номер 9267101280 сервиса Мегафон со счета 162 и вернет ID платежа, а также флаг, указывающий на то, нужно ли подтверждать платеж.
@@ -344,7 +375,12 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 Если в результате отправки платежа получили `"confirmationRequired" : true`, то нужно подтвердить платеж, передав код из SMS сообщения.
 
- `curl -u 79267101280:123456 -d '{"transactionId": 1867, "code": "925578"}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/confirmPayment`
+```shell
+curl -u 79267101280:123456 \
+-d '{"transactionId": 1867, "code": "925578"}' \
+-H 'Content-type:application/json' \
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/confirmPayment
+```
 
 ```json
 {
@@ -361,7 +397,12 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Перевод между счетами кошельков
 
- `curl -u 79267101280:123456 -d '{"source": 162, "destination": "161", "amount": 1}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/transfer`
+```shell
+curl -u 79267101280:123456 \
+-d '{"source": 162, "destination": "161", "amount": 1}' \
+-H 'Content-type:application/json' \
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/transfer
+```
 
 отправит перевод на 1 рубль с 162 на 161 счет. Счет назначения может быть задан номером счета, номером телефона кошелька 
 или email кошелька.
@@ -382,7 +423,12 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Поиск пользователей по телефонам/адресам эл. почты
 
- `curl -u 79267101280:123456 -d '{"logins": ["79267101280", "alexander@yanyshin.ru"]}' -H 'Content-type:application/json' http://localhost:8080/protocol/mobile/v1/findUsers`
+```shell
+curl -u 79267101280:123456 \
+-d '{"logins": ["79267101280", "alexander@yanyshin.ru"]}' \
+-H 'Content-type:application/json' \
+http://localhost:8080/protocol/mobile/v1/findUsers
+```
 
 
 вернет список найденных пользователей:
