@@ -129,28 +129,21 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Загрузка счетов кошелька
 
-* `GET /protocol/mobile/v1/accounts`
+ `curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts`
 
 вернет идентификаторы, имена и балансы счетов кошелька. Баланс счетов, как и везде, в рублях.
 
 ```json
-[ {
-  "id" : 27,
-  "name" : "acct# 01",
-  "amount" : 4201
-}, {
-  "id" : 62,
-  "name" : "Ещё один счет",
-  "amount" : 100
-}, {
-  "id" : 75,
-  "name" : "Дополнительный",
-  "amount" : 0
-}, {
-  "id" : 104,
-  "name" : "Дополнительный 1",
-  "amount" : 0
-} ]
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : [ {
+    "id" : 161,
+    "name" : "Основной",
+    "amount" : 0
+  } ]
+}
 
 ```
 
