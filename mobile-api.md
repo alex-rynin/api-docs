@@ -67,7 +67,7 @@ curl -d '{"phone": "79267101280", "password": "123456"}' \
 ```shell
 curl -d '{"phone": "79267101280", "pin": "123456"}' \ 
 -H 'Content-type:application/json' \ 
-https://www.synq.ru/mserver-dev/protocol/mobile/v1/confirm`
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/confirm
 ```
 
 подтвердит номер телефона пользователя и вернет статус активации.
@@ -106,7 +106,7 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/confirm`
 ```shell
 curl -d '{"login":"79267101280", "password": "123456"}' \
 -H  'Content-type:application/json' \
-https://www.synq.ru/mserver-dev/protocol/mobile/v1/auth`
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/auth
 ```
 
 вернет статус `200` и данные пользователя 
@@ -181,7 +181,7 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/ac
 ### Создание счета в кошельке
 
 ```shell
-curl -u 79267101280:123456 -X POST https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts`
+curl -u 79267101280:123456 -X POST https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts
 ```
 
 вернет идентификатор нового счета
@@ -203,7 +203,7 @@ curl -u 79267101280:123456 -X POST https://www.synq.ru/mserver-dev/protocol/mobi
 ```shell
 curl -u 79267101280:123456 -d '{"name": "test"}' \
 -H 'Content-type:application/json' \
-https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts/162`
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts/162
 ```
 
 ```json
@@ -226,7 +226,7 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts/162`
 ### Загрузка справочника провайдеров
 
 ```shell
-curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers`
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 ```
 
 вернет справочник провайдеров с разбиением по группам
@@ -306,7 +306,7 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/pr
 ### Загрузка описания провайдера
 
 ```shell
-curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers/309194856`
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers/309194856
 ```
 
 вернет описание провайдера, например:
@@ -427,7 +427,7 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/transfer
 curl -u 79267101280:123456 \
 -d '{"logins": ["79267101280", "alexander@yanyshin.ru"]}' \
 -H 'Content-type:application/json' \
-http://localhost:8080/protocol/mobile/v1/findUsers
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/findUsers
 ```
 
 
@@ -455,37 +455,47 @@ http://localhost:8080/protocol/mobile/v1/findUsers
 
 ### Получение истории транзакций по счету
 
-* `GET /protocol/mobile/v1/history/27/20130623/20130704`
+```shell
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/history/162/20140201/20140204
+```
 
-вернет историю платежных транзакций по 27 счету между 23 июня и 4 июля 2013.
+вернет историю платежных транзакций по 162 счету между началом суток 1 февраля и началом суток 4 февраля 2014.
 
 
 ```json
 {
-  "history" : [ {
-    "id" : 5074,
-    "date" : 1372174037178,
-    "amount" : 1,
-    "sourceAccountId" : 27,
-    "destinationAccountId" : 3,
-    "transactionType" : "PAY",
-    "location" : null
-  }, {
-    "id" : 5082,
-    "date" : 1372251562237,
-    "amount" : 1,
-    "sourceAccountId" : 27,
-    "destinationAccountId" : 3,
-    "transactionType" : "PAY",
-    "location" : null
-  }, {
-    "id" : 5084,
-    "date" : 1372251800462,
-    "amount" : 1,
-    "sourceAccountId" : 27,
-    "destinationAccountId" : 3,
-    "transactionType" : "PAY",
-    "location" : null
-  } ]
-
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "history" : [ {
+      "id" : 1867,
+      "date" : 1391446150547,
+      "amount" : 1,
+      "sourceAccountId" : 162,
+      "destinationAccountId" : 3,
+      "transactionType" : "OUT",
+      "location" : null,
+      "params" : [ {
+        "title" : "Номер телефона",
+        "value" : "9267101280",
+        "name" : "phoneNumber"
+      } ],
+      "service" : {
+        "code" : "453315258",
+        "name" : "Мегафон"
+      }
+    }, {
+      "id" : 1868,
+      "date" : 1391446604656,
+      "amount" : 1,
+      "sourceAccountId" : 162,
+      "destinationAccountId" : 161,
+      "transactionType" : "A2A",
+      "location" : null,
+      "params" : [ ],
+      "service" : null
+    } ]
+  }
+}
 ```
