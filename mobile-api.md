@@ -58,7 +58,7 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 После успешной регистрации требуется подтвердить используемый номер телефона с помощью команды `confirm`.
 
 ### Подтвержение телефона пользователя
- `curl -d '{"phone": "79267101280", "pin": "123456"}' -H 'Content-type:application/json' http://localhost:8080/protocol/mobile/v1/confirm`
+ `curl -d '{"phone": "79267101280", "pin": "123456"}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/confirm`
 подтвердит номер телефона пользователя и вернет статус активации.
 
 ```json
@@ -92,24 +92,40 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 
 ### Проверка правильности учетных данных
-* `POST /auth`
-с телом
+ `curl -d '{"login":"79267101280", "password": "123456"}' -H  'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/auth`
 
-```json
-{"applicationId": "my cool app"}
-```
 
 вернет статус `200` и данные пользователя 
 
 ```json
 {
-  "id" : 47,
-  "phone" : "9267101280",
-  "email" : "alexander@yanyshin.ru"
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "id" : 181,
+    "phone" : "79267101280",
+    "email" : null,
+    "active" : true
+  }
 }
 ```
 
-в случае, если переданные учетные данные верны. В противном случает будет `401`.
+в случае, если переданные учетные данные верны. В противном случает будет 
+```json
+{
+  "meta" : {
+    "status" : 400,
+    "code" : 400,
+    "developerMessage" : "Unable to find user by login 979267101280",
+    "moreInfoUrl" : "https://www.synq.ru",
+    "exception" : "UserNotFoundException"
+  },
+  "data" : {
+    "login" : "979267101280"
+  }
+}
+```
 
 ### Загрузка счетов кошелька
 
