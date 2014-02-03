@@ -323,26 +323,41 @@ curl -u user:pass https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
 
 ### Отправка платежа
 
-* `POST /protocol/mobile/v1/pay`
+ `curl -u 79267101280:123456 -d '{"serviceId": "453315258", "account": 162, "amount": 1, "parameters": {"phoneNumber": "9267101280"}}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/pay`
 
-с телом
 
-```json
-{
-  "serviceId" : 453315258,
-  "account" : 27,
-  "amount" : 1
-  "parameters" : {"phoneNumber" : "9267101280"}
-}
-```
-
-отправит платеж на 1 рубль на номер 9267101280  со счета 27 и вернет ID платежа.
+отправит платеж на 1 рубль на номер 9267101280 сервиса Мегафон со счета 162 и вернет ID платежа, а также флаг, указывающий на то, нужно ли подтверждать платеж.
 
 ```json
 {
-  "transactionId" : 4654456882  
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "transactionId" : 1867,
+    "confirmationRequired" : true
+  }
 }
 ```
+
+### Подтверждение платежа кодом
+
+Если в результате отправки платежа получили `"confirmationRequired" : true`, то нужно подтвердить платеж, передав код из SMS сообщения.
+
+ `curl -u 79267101280:123456 -d '{"transactionId": 1867, "code": "925578"}' -H 'Content-type:application/json' https://www.synq.ru/mserver-dev/protocol/mobile/v1/confirmPayment`
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "transactionId" : 1867
+  }
+}
+```
+
+после чего mserver сделает попытку провести платеж.
 
 ### Перевод между счетами кошельков
 
