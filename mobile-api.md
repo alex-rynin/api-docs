@@ -172,6 +172,7 @@ curl -u 79267101280:123456 \
 -d '{"smsAuth": true}'  \
 http://localhost:8080/protocol/mobile/v1/profile
 ```
+
 обновит настройки профиля и вернет новые значения.
 
 ```json
@@ -184,7 +185,7 @@ http://localhost:8080/protocol/mobile/v1/profile
     "phone" : "79267101280",
     "email" : "alexander@yanyshin.ru",
     "active" : true,
-    "smsAuth" : false
+    "smsAuth" : true
   }
 }
 ```
