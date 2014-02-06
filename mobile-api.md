@@ -141,6 +141,54 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/auth
 }
 ```
 
+### Загрузка профиля пользователя
+
+```shell
+curl -u 79267101280:123456  http://localhost:8080/protocol/mobile/v1/profile
+```
+
+вернет профиль аутентифицированного пользователя.
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "id" : 244,
+    "phone" : "79267101280",
+    "email" : "alexander@yanyshin.ru",
+    "active" : true,
+    "smsAuth" : false
+  }
+}
+```
+
+### Обновление настроек профиля пользователя
+
+```shell
+curl -u 79267101280:123456 \
+-H 'Content-type:application/json' \
+-d '{"smsAuth": true}'  \
+http://localhost:8080/protocol/mobile/v1/profile
+```
+обновит настройки профиля и вернет новые значения.
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "id" : 244,
+    "phone" : "79267101280",
+    "email" : "alexander@yanyshin.ru",
+    "active" : true,
+    "smsAuth" : false
+  }
+}
+```
+
 ### Загрузка счетов кошелька
 
 ```shell
