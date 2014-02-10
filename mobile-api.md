@@ -196,7 +196,7 @@ http://localhost:8080/protocol/mobile/v1/profile
 curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts
 ```
 
-вернет идентификаторы, имена и балансы счетов кошелька. Баланс счетов, как и везде, в рублях.
+вернет идентификаторы, имена и балансы открытых счетов кошелька. Баланс счетов, как и везде, в рублях.
 
 ```json
 {
@@ -270,7 +270,28 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts/162
 
 переименует счет с ID 162.
 
+### Закрытие счета
 
+```shell
+curl -u 79267101280:123456 -X POST \
+-H 'Content-type:application/json' \
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts/closed/162
+```
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "id" : 162,
+    "name" : "test",
+    "amount" : 0
+  }
+}
+```
+
+закроет счет 162.
 
 ### Загрузка справочника провайдеров
 
