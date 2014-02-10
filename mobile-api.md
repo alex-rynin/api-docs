@@ -569,3 +569,94 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/hi
   }
 }
 ```
+
+API для разработчиков
+---------
+
+Доступно только на dev сервере при указании специального User-agent (кому положено тот знает).
+
+### Получение списка всех пользователей
+ 
+```shell
+curl --user-agent <UA> -X POST https://www.synq.ru/mserver-dev/protocol/dev/user
+```
+
+вернет
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : [
+   {
+   "id" : 0,
+   "phoneNumber" : "79267101280",
+   "email" : null,
+   "login" : null,
+   "enabled" : true,
+   "renewalCode" : null,
+   "activationCode" : null,
+   "active" : true,
+   "dateCreate" : 1390486296155,
+   "smsAuth" : false,
+   "notifyOnTx" : false,
+   "roles" : [ ],
+   "userClass" : null,
+   "new" : false,
+   "roleNames" : [ ]
+   }
+  ]
+}
+```
+
+### Получение пользователя по телефону или email
+
+```shell
+curl --user-agent <UA> https://www.synq.ru/mserver-dev/protocol/dev/user/79267101280
+```
+
+вернет
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" :
+   {
+   "id" : 0,
+   "phoneNumber" : 79267101280,
+   "email" : null,
+   "login" : null,
+   "enabled" : true,
+   "renewalCode" : null,
+   "activationCode" : null,
+   "active" : true,
+   "dateCreate" : 1390486296155,
+   "smsAuth" : false,
+   "notifyOnTx" : false,
+   "roles" : [ ],
+   "userClass" : null,
+   "new" : false,
+   "roleNames" : [ ]
+   }
+}
+```
+
+### Удаление пользователя по его телефону или email
+
+```shell
+curl --user-agent <UA> -X POST https://www.synq.ru/mserver-dev/protocol/dev/user/dropped/79267101280
+```
+
+удалит пользователя со всеми зависимыми объектами и вернет
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : null
+}
+```
