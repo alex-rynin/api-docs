@@ -578,7 +578,7 @@ API для разработчиков
 ### Получение списка всех пользователей
  
 ```shell
-curl --user-agent <UA> -X POST https://www.synq.ru/mserver-dev/protocol/dev/user
+curl --user-agent <UA> https://www.synq.ru/mserver-dev/protocol/dev/user
 ```
 
 вернет
