@@ -572,13 +572,13 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/findUsers
 
 ```
 
-### Получение истории транзакций по счету
+### Получение истории платежей
 
 ```shell
-curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/history/162/20140201/20140204
+curl -u 79267101280:123456 'https://www.synq.ru/mserver-dev/protocol/mobile/v1/payment?low=1&high=1'
 ```
 
-вернет историю платежных транзакций по 162 счету между началом суток 1 февраля и началом суток 4 февраля 2014.
+вернет историю платежных транзакций для кошелька 79267101280 отсортированную по дате создания платежа по убыванию. Параметры low и high - первая и последняя по порядку записи (нумерация с 1).
 
 
 ```json
@@ -588,34 +588,46 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/hi
   },
   "data" : {
     "history" : [ {
-      "id" : 1867,
-      "date" : 1391446150547,
-      "amount" : 1,
-      "sourceAccountId" : 162,
-      "destinationAccountId" : 3,
-      "transactionType" : "OUT",
-      "params" : [ {
-        "title" : "Номер телефона",
-        "value" : "9267101280",
-        "name" : "phoneNumber"
-      } ],
-      "service" : {
-        "code" : "453315258",
-        "name" : "Мегафон"
-      }
-    }, {
-      "id" : 1868,
-      "date" : 1391446604656,
-      "amount" : 1,
-      "sourceAccountId" : 162,
-      "destinationAccountId" : 161,
-      "transactionType" : "A2A",
-      "params" : [ ],
-      "service" : null
-    } ]
+    "id" : 1844,
+    "createDate" : 1391183325868,
+    "finishDate" : 1391183350293,
+    "status" : "FINISHED",
+    "amount" : 1,
+    "serviceId" : 834,
+    "sourceAccountId" : 25,
+    "destinationAccountId" : 3,
+    "type" : "OUT",
+    "sourceId" : 47,
+    "sourceName" : null,
+    "sourceEmail" : "alexander@yanyshin.ru",
+    "sourcePhone" : "79267101280",
+    "sourceType" : "USER",
+    "destinationId" : 1,
+    "destinationName" : "Кредит Пилот",
+    "destinationEmail" : null,
+    "destinationPhone" : null,
+    "destinationType" : "PROVIDER",
+    "params" : [ {
+      "title" : "Номер телефона",
+      "value" : "9267101280",
+      "name" : "phoneNumber"
+    } ],
+    "service" : {
+      "code" : "453315258",
+      "name" : "Мегафон"
+    }
+  } ]
   }
 }
 ```
+
+Если опустить параметры low и high 
+
+```shell
+curl -u 79267101280:123456 'https://www.synq.ru/mserver-dev/protocol/mobile/v1/payment'
+```
+
+то будут использованы значения по-умолчанию low = 1, high = 35 (возвращаем первые 35 платежей).
 
 API для разработчиков
 ---------
