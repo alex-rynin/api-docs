@@ -490,6 +490,56 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/transfer
 }
 ```
 
+### Однократное пополнение счета кошелька с пластиковой карты
+
+```shell
+curl -u 79267101280:123456 \
+-H 'Content-type:application/json' \
+-d '{"destination": "79267101280", "amount": 1.0}' \
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/cardPayment
+```
+
+вернет идентификатор платежной транзации на пополнение счета и URL платежной страницы, на которую следует перенаправить пользователя.
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "transactionId" : 2146,
+    "paymentPageUrl" : "https://test1.ipsp.com/frontend/endpoint?amount=1.0&cf=2146&currency=RUB&hash=139db86f33003dc2aeacc0ab29748587d310a55e&payment_type=S&perspayee_expiry=0150&product_id=1713"
+  }
+}
+```
+
+### Получение статуса платежной транзакции
+
+```shell
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/payment/2146
+```
+
+вернет информацию о транзакции
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "id" : 2146,
+    "date" : 1392294483571,
+    "amount" : 1,
+    "sourceAccountId" : 141,
+    "destinationAccountId" : 342,
+    "transactionType" : "IN",
+    "location" : null,
+    "params" : [ ],
+    "service" : null,
+    "status" : "FINISHED"
+  }
+}
+```
 
 ### Поиск пользователей по телефонам/адресам эл. почты
 
