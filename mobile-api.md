@@ -441,7 +441,7 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/pay
 }
 ```
 
-Счет списания можно не указывать, тогда деьги будут списаны с главного счета кошелька.
+Счет списания можно не указывать, тогда деньги будут списаны с главного счета кошелька.
 
 ### Подтверждение платежа кодом
 
@@ -604,6 +604,36 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/cardPayment/1
   "data" : {
     "transactionId" : 2193,
     "resultCode" : "OK"
+  }
+}
+```
+
+### Оплата в пользу провайдера с привязанной карты (транзитом через основной счет кошелька)
+
+Оплата на 1 рубль в пользу сервиса 453315258 по номеру 9267101280 с привязанной карты с ID 1.
+
+```shell
+curl -u 79267101280:123456 \
+-d '{"serviceId": "453315258", "amount": 1, "parameters": {"phoneNumber": "9267101280"}}' \
+-H 'Content-type:application/json' \
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/cardProviderPayment/1
+```
+
+Вернет ID транзакций пополнения и списания и статус карточной транзакции от IPSP = {OK|KO}.
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "card" : {
+      "transactionId" : 2195,
+      "resultCode" : "OK"
+    },
+    "provider" : {
+      "transactionId" : 2196
+    }
   }
 }
 ```
