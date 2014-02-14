@@ -537,6 +537,7 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/card
 
 NOTE: В результате успешной привязки с карты будет списан 1 рубль.
 
+
 ### Получение статуса привязанной карты
 
 ```shell
@@ -576,6 +577,32 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/ca
     "title" : null,
     "state" : "ACTIVE"
   } ]
+}
+```
+
+### Пополнение счета кошелька с привязанной карты
+
+Запрос на пополнение основного счета кошелька 79267101280 с привзанной карты с ID 1 на 1 рубль.
+
+```shell
+curl -u 79267101280:123456 \
+-H 'Content-type:application/json' \
+-d '{"destination": "9267101280", "amount": 1}' \
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/cardPayment/1
+```
+
+вернет идентификатор платежной транзакции и статус операции IPSP = {OK|KO}.
+
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "transactionId" : 2193,
+    "resultCode" : "OK"
+  }
 }
 ```
 
