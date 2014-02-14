@@ -513,6 +513,28 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/cardPayment
 }
 ```
 
+### Привязка пластиковой карты
+
+```shell
+curl -u 79267101280:123456 \
+-X POST -H 'Content-type:application/json' \
+https://www.synq.ru/mserver-dev/protocol/mobile/v1/card
+```
+
+вернет идентификатор карты и URL платежной страницы, на которую следует перенаправить пользователя.
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "cardId" : 1,
+    "paymentPageUrl" : "https://test1.ipsp.com/frontend/endpoint?amount=1&biller_client_id=1&cf=2184&currency=RUB&hash=3f043e74873bf29d03bfb7d3f957fc589ea33297&payment_type=S&perspayee_expiry=0150&product_id=1713"
+  }
+}
+```
+
 ### Получение статуса платежной транзакции
 
 ```shell
