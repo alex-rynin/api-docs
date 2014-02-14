@@ -537,6 +537,48 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/card
 
 NOTE: В результате успешной привязки с карты будет списан 1 рубль.
 
+### Получение статуса привязанной карты
+
+```shell
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/card/1
+```
+
+вернет статус привязанной карты с идентификатором 1.
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "id" : 1,
+    "title" : null,
+    "state" : "ACTIVE"
+  }
+}
+```
+
+### Получение списка привязанных карт
+
+```shell
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/card
+```
+
+вернет список привязанных карт
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : [ {
+    "id" : 1,
+    "title" : null,
+    "state" : "ACTIVE"
+  } ]
+}
+```
+
 ### Получение статуса платежной транзакции
 
 ```shell
