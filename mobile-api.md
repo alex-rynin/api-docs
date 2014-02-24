@@ -765,10 +765,64 @@ curl -u 79267101280:123456 'https://www.synq.ru/mserver-dev/protocol/mobile/v1/p
 
 то будут использованы значения по-умолчанию low = 1, high = 35 (возвращаем первые 35 платежей).
 
+API для доверенных систем
+---------
+
+Доступно только пользователям со включенной ролью ROLE_TRUSTED.
+
+
+
 API для разработчиков
 ---------
 
 Доступно только на dev сервере при указании специального User-agent (кому положено тот знает).
+
+### Активация пользователя
+
+```shell
+curl -u trusted:ffuuuu \
+-X POST  \
+http://localhost:8080/protocol/trusted/user/active/310
+```
+
+вернет
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "activated" : true
+  }
+}
+```
+
+и активирует пользователя с ID 310. Если пользователь уже активирован, команда не делает ничего и возвращает false.
+
+### Смена пароля
+
+```shell
+curl -u trusted:ffuuuu \
+-d '{"password": "qwe123"}' \
+-H 'Content-type:application/json' \
+http://localhost:8080/protocol/trusted/user/password/310
+```
+
+вернет
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "changed" : true
+  }
+}
+```
+
+и изменит пароль пользователя с ID 310 на qwe123.
 
 ### Получение списка всех пользователей
  
