@@ -555,8 +555,9 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/ca
   },
   "data" : {
     "id" : 1,
-    "title" : null,
-    "state" : "ACTIVE"
+    "title" : "431422******9913",
+    "state" : "ACTIVE",
+    "cardType": "Visa"
   }
 }
 ```
@@ -576,8 +577,9 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/ca
   },
   "data" : [ {
     "id" : 1,
-    "title" : null,
-    "state" : "ACTIVE"
+    "title" : "431422******9913",
+    "state" : "ACTIVE",
+    "cardType": "Visa"
   } ]
 }
 ```
