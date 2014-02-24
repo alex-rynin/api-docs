@@ -775,7 +775,7 @@ API для доверенных систем
 ```shell
 curl -u trusted:ffuuuu \
 -X POST  \
-http://localhost:8080/protocol/trusted/user/active/310
+https://www.synq.ru/mserver-dev/protocol/trusted/user/active/310
 ```
 
 вернет
@@ -799,7 +799,7 @@ http://localhost:8080/protocol/trusted/user/active/310
 curl -u trusted:ffuuuu \
 -d '{"password": "qwe123"}' \
 -H 'Content-type:application/json' \
-http://localhost:8080/protocol/trusted/user/password/310
+https://www.synq.ru/mserver-dev/protocol/trusted/user/password/310
 ```
 
 вернет
