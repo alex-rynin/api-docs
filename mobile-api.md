@@ -730,6 +730,7 @@ curl -u 79267101280:123456 'https://www.synq.ru/mserver-dev/protocol/mobile/v1/p
     "finishDate" : 1391183350293,
     "status" : "FINISHED",
     "amount" : 1,
+    "commission" : 0,
     "serviceId" : 834,
     "sourceAccountId" : 25,
     "destinationAccountId" : 3,
