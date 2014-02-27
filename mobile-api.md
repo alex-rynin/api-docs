@@ -293,13 +293,13 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/accounts/closed/162
 
 закроет счет 162.
 
-### Загрузка справочника провайдеров
+### Загрузка справочника сервисов
 
 ```shell
-curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/services
 ```
 
-вернет справочник провайдеров с разбиением по группам
+вернет справочник доступных сервисов с разбиением по группам
 
 ```json
 {
@@ -309,74 +309,104 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/pr
   "data" : [ {
     "id" : 3,
     "name" : "Мобильная связь",
-    "providers" : [ {
-      "id" : "453315258",
-      "name" : "Мегафон"
-    }, {
-      "id" : "750739964",
+    "services" : [ {
+      "id" : 1000,
       "name" : "Теле2"
     }, {
-      "id" : "890983449",
+      "id" : 827,
+      "name" : "МТС"
+    }, {
+      "id" : 770,
       "name" : "Билайн"
     }, {
-      "id" : "540792152",
-      "name" : "МТС"
+      "id" : 834,
+      "name" : "Мегафон"
     } ]
   }, {
     "id" : 12,
     "name" : "Игры",
-    "providers" : [ ]
+    "services" : [ {
+      "id" : 1066,
+      "name" : "Одноклассники"
+    }, {
+      "id" : 1068,
+      "name" : "Вконтакте"
+    }, {
+      "id" : 1065,
+      "name" : "World of Tanks"
+    } ]
   }, {
     "id" : 5,
     "name" : "Интернет",
-    "providers" : [ ]
+    "services" : [ {
+      "id" : 1081,
+      "name" : "OnLime"
+    } ]
   }, {
     "id" : 4,
-    "name" : "Цифровое телевидение",
-    "providers" : [ ]
+    "name" : "Телевидение",
+    "services" : [ {
+      "id" : 1069,
+      "name" : "Триколор ТВ"
+    } ]
   }, {
     "id" : 6,
     "name" : "Телефония",
-    "providers" : [ {
-      "id" : "309194856",
+    "services" : [ {
+      "id" : 777,
       "name" : "МГТС"
     } ]
   }, {
-    "id" : 7,
-    "name" : "Коммунальные платежи",
-    "providers" : [ ]
-  }, {
     "id" : 8,
     "name" : "Платежные системы",
-    "providers" : [ ]
+    "services" : [ {
+      "id" : 1021,
+      "name" : "WebMoney"
+    }, {
+      "id" : 1002,
+      "name" : "Яндекс.Деньги"
+    } ]
   }, {
     "id" : 9,
     "name" : "Банковские услуги",
-    "providers" : [ ]
-  }, {
-    "id" : 13,
-    "name" : "Туристические компании",
-    "providers" : [ ]
-  }, {
-    "id" : 10,
-    "name" : "Прочее",
-    "providers" : [ ]
+    "services" : [ {
+      "id" : 1064,
+      "name" : "Хоум кредит энд финанс банк"
+    }, {
+      "id" : 1063,
+      "name" : "Банк Русский Стандарт"
+    }, {
+      "id" : 1102,
+      "name" : "Пополнение VISA/MASTERCARD/MAESTRO Украина"
+    }, {
+      "id" : 1061,
+      "name" : "Альфа Банк"
+    }, {
+      "id" : 1041,
+      "name" : "Тинькофф Кредитные Системы"
+    }, {
+      "id" : 1062,
+      "name" : "ОТП Банк"
+    }, {
+      "id" : 1101,
+      "name" : "Пополнение VISA/MASTERCARD/MAESTRO Россия"
+    } ]
   }, {
     "id" : 2,
     "name" : "Мобильная связь СНГ",
-    "providers" : [ ]
-  }, {
-    "id" : 11,
-    "name" : "Тестовые сервисы",
-    "providers" : [ ]
+    "services" : [ {
+      "id" : 1067,
+      "name" : "МТС Украина"
+    } ]
   } ]
 }
+
 ```
 
-### Загрузка описания провайдера
+### Загрузка описания сервиса
 
 ```shell
-curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/providers/309194856
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/services/1102
 ```
 
 вернет описание провайдера, например:
@@ -387,29 +417,54 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/pr
     "code" : "200"
   },
   "data" : {
-    "id" : 309194856,
-    "name" : "МГТС (2)",
-    "minsum" : 1,
+    "id" : 1102,
+    "name" : "Пополнение VISA/MASTERCARD/MAESTRO Украина,СНГ (29)",
+    "minsum" : 100,
     "maxsum" : 15000,
     "parameters" : [ {
-      "id" : 1068,
-      "code" : "appartment",
+      "code" : "126",
       "minLength" : null,
       "maxLength" : null,
-      "title" : "Номер квартиры",
-      "pattern" : null,
-      "type" : null,
-      "patternDescription" : "Номер квартиры",
+      "title" : "Адрес регистрации Плательщика",
+      "pattern" : "^.{3,70}$",
+      "type" : "text",
+      "patternDescription" : "Адрес регистрации плательщика",
       "main" : false
     }, {
-      "id" : 1069,
+      "code" : "18",
+      "minLength" : null,
+      "maxLength" : null,
+      "title" : "ФИО Плательщика",
+      "pattern" : "^.{3,70}$",
+      "type" : "text",
+      "patternDescription" : "ФИО плательщика",
+      "main" : false
+    }, {
+      "code" : "2",
+      "minLength" : null,
+      "maxLength" : null,
+      "title" : "№ телефона Плательщика (10 цифр) ",
+      "pattern" : "^\\d{10}$",
+      "type" : "text",
+      "patternDescription" : "№ телефона плательщика (10 цифр)",
+      "main" : false
+    }, {
+      "code" : "4",
+      "minLength" : null,
+      "maxLength" : null,
+      "title" : "Город регистрации Плательщика",
+      "pattern" : "^.{2,70}$",
+      "type" : "text",
+      "patternDescription" : "Город регистрации плательщика",
+      "main" : false
+    }, {
       "code" : "phoneNumber",
-      "minLength" : 10,
-      "maxLength" : 10,
-      "title" : "№ телефона (10 цифр)",
-      "pattern" : null,
-      "type" : null,
-      "patternDescription" : "№ телефона (10 цифр)",
+      "minLength" : 16,
+      "maxLength" : 19,
+      "title" : "№ карты (16/18/19 цифр)",
+      "pattern" : "^(\\d{16}|\\d{18}|\\d{19})$",
+      "type" : "numeric",
+      "patternDescription" : "№ карты (16/18/19 цифр)",
       "main" : true
     } ]
   }
@@ -421,7 +476,7 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/pr
 
 ```shell
 curl -u 79267101280:123456 \
--d '{"serviceId": "453315258", "account": 162, "amount": 1, "parameters": {"phoneNumber": "9267101280"}}' \
+-d '{"serviceId": "834", "account": 342, "amount": 1, "parameters": {"phoneNumber": "9267101280"}}' \
 -H 'Content-type:application/json' \
 https://www.synq.ru/mserver-dev/protocol/mobile/v1/pay
 ```
@@ -612,11 +667,11 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/cardPayment/1
 
 ### Оплата в пользу провайдера с привязанной карты (транзитом через основной счет кошелька)
 
-Оплата на 1 рубль в пользу сервиса 453315258 по номеру 9267101280 с привязанной карты с ID 1.
+Оплата на 1 рубль в пользу сервиса 834 по номеру 9267101280 с привязанной карты с ID 1.
 
 ```shell
 curl -u 79267101280:123456 \
--d '{"serviceId": "453315258", "amount": 1, "parameters": {"phoneNumber": "9267101280"}}' \
+-d '{"serviceId": "834", "amount": 1, "parameters": {"phoneNumber": "9267101280"}}' \
 -H 'Content-type:application/json' \
 https://www.synq.ru/mserver-dev/protocol/mobile/v1/cardProviderPayment/1
 ```
@@ -643,7 +698,7 @@ https://www.synq.ru/mserver-dev/protocol/mobile/v1/cardProviderPayment/1
 ### Получение статуса платежной транзакции
 
 ```shell
-curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/payment/2146
+curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/payment/2363
 ```
 
 вернет информацию о транзакции
@@ -654,17 +709,25 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/pa
     "code" : "200"
   },
   "data" : {
-    "id" : 2146,
-    "date" : 1392294483571,
+    "id" : 2363,
+    "date" : 1393541057237,
     "amount" : 1,
-    "sourceAccountId" : 141,
-    "destinationAccountId" : 342,
-    "transactionType" : "IN",
-    "params" : [ ],
-    "service" : null,
+    "sourceAccountId" : 342,
+    "destinationAccountId" : 3,
+    "transactionType" : "OUT",
+    "params" : [ {
+      "title" : "№ телефона (10 цифр)",
+      "value" : "9267101280",
+      "name" : "phoneNumber"
+    } ],
+    "service" : {
+      "id" : 834,
+      "name" : "Мегафон"
+    },
     "status" : "FINISHED"
   }
 }
+
 ```
 
 Статусы платежной транзакции
@@ -751,7 +814,7 @@ curl -u 79267101280:123456 'https://www.synq.ru/mserver-dev/protocol/mobile/v1/p
       "name" : "phoneNumber"
     } ],
     "service" : {
-      "code" : "453315258",
+      "code" : "843",
       "name" : "Мегафон"
     }
   } ]
