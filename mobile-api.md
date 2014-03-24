@@ -639,6 +639,28 @@ curl -u 79267101280:123456 https://www.synq.ru/mserver-dev/protocol/mobile/v1/ca
 }
 ```
 
+### Удаление привязанной карты
+
+```shell
+curl -u 79267101280:123456 -X POST https://www.synq.ru/mserver-dev/protocol/mobile/v1/card/dropped/85
+```
+
+вернет только что удаленную карту
+
+```json
+{
+  "meta" : {
+    "code" : "200"
+  },
+  "data" : {
+    "id" : 85,
+    "title" : "541715******9149",
+    "state" : "DELETED",
+    "cardType" : "MasterCard"
+  }
+}
+```
+
 ### Пополнение счета кошелька с привязанной карты
 
 Запрос на пополнение основного счета кошелька 79267101280 с привзанной карты с ID 1 на 1 рубль.
