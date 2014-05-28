@@ -79,6 +79,22 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/wallet
 }
 ```
 
+## Удаление кошелька
+
+*Команда работает только на dev сервере.*
+
+```shell
+$ curl -u+79261111111:p@ssw0rD -X DELETE https://www.synq.ru/mserver2-dev/v1/wallet
+```
+
+```json
+{
+  "meta" : {
+    "code" : 200
+  }
+}
+```
+
 # Сервисы
 
 ## Загрузка списка сервисов
