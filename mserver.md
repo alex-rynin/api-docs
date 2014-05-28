@@ -1,13 +1,13 @@
 API mserver 2
 =========
 
-# 1. Общее
+# Общее
 
-## 1.1 Аутентификация.
+## Аутентификация
 
 Используется BASIC аутентификация со включенными сессиями. Можно слать логин/пароль каждый раз, можно прислать 1 раз за сессию, и в дальнейшем слать токен сессии в куке JSESSONID. В качестве логина можно присылать номер телефона или email.
 
-## 1.2 Ошибки.
+## Ошибки
 
 API использует HTTP статусы для возврата ошибок.
 
@@ -34,14 +34,14 @@ HTTP статус дублируется в поле meta.status ответа ms
 
 Справочники возможных значений error для каждого вызова API описаны ниже.
 
-# 2. Кошелек.
+# Кошелек
 
-## 2.1 Создание кошелька.
+## Создание кошелька
 
 phone - номер телефона в международном формате
 password - пароль, не короче 6 символов
 
-$ curl -H 'Content-type:application/json' -d '{"phone": "+79261111111", "password": "p@ssw0rD"}' https://www.synq.ru/mserver2-dev/v1/wallet
+ $ curl -H 'Content-type:application/json' -d '{"phone": "+79261111111", "password": "p@ssw0rD"}' https://www.synq.ru/mserver2-dev/v1/wallet
 
 ```json
 {
@@ -55,9 +55,9 @@ $ curl -H 'Content-type:application/json' -d '{"phone": "+79261111111", "passwor
 }
 ```
 
-## 2.2 Загрузка кошелька.
+## Загрузка кошелька
 
-$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/wallet
+ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/wallet
 
 ```json
 {
@@ -71,11 +71,11 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/wallet
 }
 ```
 
-# 3. Сервисы.
+# Сервисы
 
-## 3.1 Загрузка списка сервисов.
+## Загрузка списка сервисов
 
-$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services
+ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services
 
 ```json
  {
@@ -112,9 +112,9 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services
 }
 ```
 
-## 3.2 Загрузка сервиса по идентификатору.
+## Загрузка сервиса по идентификатору
 
-$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services/1
+ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services/1
 
 ```json
 {
@@ -140,9 +140,9 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services/1
 }
 ```
 
-## 3.3 Сервисы по группам.
+## Сервисы по группам
 
-$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services/groups
+ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services/groups
 
 ```json
 {
@@ -182,15 +182,15 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services/grou
 /* ... */
 ```
 
-# 4. Платежи.
+# Платежи
 
 В качестве клиентского идентификатора платежа (client_payment_id) используется UUID. Если в процессе создания платежа клиент получил ошибку i/o, он должен повторять запрос создания платежа с тем же самым client_payment_id до получения ответа. Гарантируется, что платеж с данным client_payment_id будет создан не более 1 раза.
 
-## 4.1 Простые сервисы (одношаговые).
+## Простые сервисы (одношаговые)
 
-### 4.1.1. Создание платежа в пользу провайдера.
+### Создание платежа в пользу провайдера
 
-$ curl -u -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "out", "client_payment_id": "071c6d23-7508-4e35-ad92-852308a47677", "amount": 100, "service": 1, "parameters": {"phoneNumbe": "9267101280"}}' https://www.synq.ru/mserver2-dev/v1/payments
+ $ curl -u -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "out", "client_payment_id": "071c6d23-7508-4e35-ad92-852308a47677", "amount": 100, "service": 1, "parameters": {"phoneNumbe": "9267101280"}}' https://www.synq.ru/mserver2-dev/v1/payments
 
 ```json
 {
@@ -224,9 +224,9 @@ $ curl -u -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type"
 }
 ```
 
-### 4.1.2. Пользователь согласен с условиями, запускаем платеж в обработку.
+### Пользователь согласен с условиями, запускаем платеж в обработку
 
-$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -X POST https://www.synq.ru/mserver2-dev/v1/payments/1401089234881/pay
+ $ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -X POST https://www.synq.ru/mserver2-dev/v1/payments/1401089234881/pay
 
 ```json
 {
@@ -260,9 +260,9 @@ $ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -X POST https:
 }
 ```
 
-### 4.1.3. Загрузка платежа.
+### Загрузка платежа
 
-$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234881
+ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234881
 
 ```json
 {
@@ -298,11 +298,11 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401
 
 Платеж проведен.
 
-## 4.2 Многошаговые платежи.
+## Многошаговые платежи
 
-### 4.2.1 Создание платежа в пользу провайдера.
+### Создание платежа в пользу провайдера
 
-$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "out", "client_payment_id": "e731a7e2-c553-4295-867e-1023359bee28", "amount": 100, "service": 61, "parameters": {"phoneNumber": "9267101283", "BIK": "044583151", "Name": "name", "SName": "sname", "Fam": "fam"}}' https://www.synq.ru/mserver2-dev/v1/payments
+ $ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "out", "client_payment_id": "e731a7e2-c553-4295-867e-1023359bee28", "amount": 100, "service": 61, "parameters": {"phoneNumber": "9267101283", "BIK": "044583151", "Name": "name", "SName": "sname", "Fam": "fam"}}' https://www.synq.ru/mserver2-dev/v1/payments
 
 ```json
 {
@@ -353,7 +353,7 @@ $ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "
 
 ### 4.2.2 Следующий шаг, запрос состояния платежа.
 
-$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
+ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
 
 ```json
 {
@@ -428,9 +428,9 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401
 }
 ```
 
-### 4.2.3 Следующий шаг, обновление платежа, передача запрошенных на предыдущем шаге дополнительных параметров (и всех остальных параметров тоже).
+### Следующий шаг, обновление платежа, передача запрошенных на предыдущем шаге дополнительных параметров (и всех остальных параметров тоже)
 
-$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"parameters": {"phoneNumber": "9267101283", "BIK": "044583151", "Name": "name", "SName": "sname", "Fam": "fam", "Pname1": "5136913818331704", "Pname2": "fio"}}' https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
+ $ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"parameters": {"phoneNumber": "9267101283", "BIK": "044583151", "Name": "name", "SName": "sname", "Fam": "fam", "Pname1": "5136913818331704", "Pname2": "fio"}}' https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
 
 ```json
 {
@@ -487,9 +487,9 @@ $ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"paramete
 }
 ```
 
-### 4.2.4 Следующий шаг, запрос состояния платежа.
+### Следующий шаг, запрос состояния платежа
 
-$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
+ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
 
 ```json
 {
@@ -553,9 +553,9 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401
 }
 ```
 
-### 4.2.5 Пользователь согласен с условиями, запускаем платеж в обработку.
+### Пользователь согласен с условиями, запускаем платеж в обработку
 
-$ curl -u+79261111111:p@ssw0rD -X POST https://www.synq.ru/mserver2-dev/v1/payments/1401089234883/pay
+ $ curl -u+79261111111:p@ssw0rD -X POST https://www.synq.ru/mserver2-dev/v1/payments/1401089234883/pay
 
 ```json
 {
@@ -613,9 +613,9 @@ $ curl -u+79261111111:p@ssw0rD -X POST https://www.synq.ru/mserver2-dev/v1/payme
 }
 ```
 
-### 4.2.6 Последний шаг, запрос состояния платежа.
+### Последний шаг, запрос состояния платежа
 
-$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883y
+ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883y
 
 ```json
 {
@@ -673,9 +673,9 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401
 }
 ```
 
-### 4.3 Получение истории платежей.
+### Получение истории платежей
 
-$ curl -u+79099560571:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments
+ $ curl -u+79099560571:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments
 
 ```json
 {
