@@ -5,7 +5,7 @@ API mserver 2
 
 ## Аутентификация
 
-Используется BASIC аутентификация со включенными сессиями. Можно слать логин/пароль каждый раз, можно прислать 1 раз за сессию, и в дальнейшем слать токен сессии в куке JSESSONID. В качестве логина можно присылать номер телефона или email.
+Используется BASIC аутентификация со включенными сессиями. Можно слать логин/пароль каждый раз, можно прислать 1 раз за сессию, и в дальнейшем слать токен сессии в куке `JSESSONID`. В качестве логина можно присылать номер телефона или email.
 
 ## Ошибки
 
@@ -40,10 +40,12 @@ HTTP статус дублируется в поле meta.status ответа ms
 
 ## Создание кошелька
 
-phone - номер телефона в международном формате
-password - пароль, не короче 6 символов
+`phone` - номер телефона в международном формате
+`password` - пароль, не короче 6 символов
 
- $ curl -H 'Content-type:application/json' -d '{"phone": "+79261111111", "password": "p@ssw0rD"}' https://www.synq.ru/mserver2-dev/v1/wallet
+```shell
+$ curl -H 'Content-type:application/json' -d '{"phone": "+79261111111", "password": "p@ssw0rD"}' https://www.synq.ru/mserver2-dev/v1/wallet
+```
 
 ```json
 {
@@ -59,7 +61,9 @@ password - пароль, не короче 6 символов
 
 ## Загрузка кошелька
 
- $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/wallet
+```shell
+$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/wallet
+```
 
 ```json
 {
@@ -77,7 +81,9 @@ password - пароль, не короче 6 символов
 
 ## Загрузка списка сервисов
 
- $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services
+```shell
+$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services
+```
 
 ```json
  {
@@ -116,7 +122,9 @@ password - пароль, не короче 6 символов
 
 ## Загрузка сервиса по идентификатору
 
- $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services/1
+```shell
+$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services/1
+```
 
 ```json
 {
@@ -144,7 +152,9 @@ password - пароль, не короче 6 символов
 
 ## Сервисы по группам
 
- $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services/groups
+```shell
+$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services/groups
+```
 
 ```json
 {
@@ -186,13 +196,15 @@ password - пароль, не короче 6 символов
 
 # Платежи
 
-В качестве клиентского идентификатора платежа (client_payment_id) используется UUID. Если в процессе создания платежа клиент получил ошибку i/o, он должен повторять запрос создания платежа с тем же самым client_payment_id до получения ответа. Гарантируется, что платеж с данным client_payment_id будет создан не более 1 раза.
+В качестве клиентского идентификатора платежа (`client_payment_id`) используется UUID. Если в процессе создания платежа клиент получил ошибку i/o, он должен повторять запрос создания платежа с тем же самым `client_payment_id` до получения ответа. Гарантируется, что платеж с данным `client_payment_id` будет создан не более 1 раза.
 
 ## Простые сервисы (одношаговые)
 
 ### Создание платежа в пользу провайдера
 
- $ curl -u -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "out", "client_payment_id": "071c6d23-7508-4e35-ad92-852308a47677", "amount": 100, "service": 1, "parameters": {"phoneNumbe": "9267101280"}}' https://www.synq.ru/mserver2-dev/v1/payments
+```shell
+$ curl -u -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "out", "client_payment_id": "071c6d23-7508-4e35-ad92-852308a47677", "amount": 100, "service": 1, "parameters": {"phoneNumbe": "9267101280"}}' https://www.synq.ru/mserver2-dev/v1/payments
+```
 
 ```json
 {
@@ -228,8 +240,9 @@ password - пароль, не короче 6 символов
 
 ### Пользователь согласен с условиями, запускаем платеж в обработку
 
- $ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -X POST https://www.synq.ru/mserver2-dev/v1/payments/1401089234881/pay
-
+```shell
+$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -X POST https://www.synq.ru/mserver2-dev/v1/payments/1401089234881/pay
+```
 ```json
 {
   "meta" : {
@@ -263,8 +276,9 @@ password - пароль, не короче 6 символов
 ```
 
 ### Загрузка платежа
-
- $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234881
+```shell
+$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234881
+```
 
 ```json
 {
@@ -304,7 +318,9 @@ password - пароль, не короче 6 символов
 
 ### Создание платежа в пользу провайдера
 
- $ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "out", "client_payment_id": "e731a7e2-c553-4295-867e-1023359bee28", "amount": 100, "service": 61, "parameters": {"phoneNumber": "9267101283", "BIK": "044583151", "Name": "name", "SName": "sname", "Fam": "fam"}}' https://www.synq.ru/mserver2-dev/v1/payments
+```shell
+$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "out", "client_payment_id": "e731a7e2-c553-4295-867e-1023359bee28", "amount": 100, "service": 61, "parameters": {"phoneNumber": "9267101283", "BIK": "044583151", "Name": "name", "SName": "sname", "Fam": "fam"}}' https://www.synq.ru/mserver2-dev/v1/payments
+```
 
 ```json
 {
@@ -355,7 +371,9 @@ password - пароль, не короче 6 символов
 
 ### 4.2.2 Следующий шаг, запрос состояния платежа.
 
- $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
+```shell
+$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
+```
 
 ```json
 {
@@ -432,7 +450,9 @@ password - пароль, не короче 6 символов
 
 ### Следующий шаг, обновление платежа, передача запрошенных на предыдущем шаге дополнительных параметров (и всех остальных параметров тоже)
 
- $ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"parameters": {"phoneNumber": "9267101283", "BIK": "044583151", "Name": "name", "SName": "sname", "Fam": "fam", "Pname1": "5136913818331704", "Pname2": "fio"}}' https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
+```shell
+$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"parameters": {"phoneNumber": "9267101283", "BIK": "044583151", "Name": "name", "SName": "sname", "Fam": "fam", "Pname1": "5136913818331704", "Pname2": "fio"}}' https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
+```
 
 ```json
 {
@@ -491,7 +511,9 @@ password - пароль, не короче 6 символов
 
 ### Следующий шаг, запрос состояния платежа
 
- $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
+```shell
+$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
+```
 
 ```json
 {
@@ -557,7 +579,9 @@ password - пароль, не короче 6 символов
 
 ### Пользователь согласен с условиями, запускаем платеж в обработку
 
+```shell
  $ curl -u+79261111111:p@ssw0rD -X POST https://www.synq.ru/mserver2-dev/v1/payments/1401089234883/pay
+```
 
 ```json
 {
@@ -617,7 +641,9 @@ password - пароль, не короче 6 символов
 
 ### Последний шаг, запрос состояния платежа
 
- $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883y
+```shell
+$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883y
+```
 
 ```json
 {
@@ -677,7 +703,9 @@ password - пароль, не короче 6 символов
 
 ### Получение истории платежей
 
- $ curl -u+79099560571:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments
+```shell
+$ curl -u+79099560571:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments
+```
 
 ```json
 {
