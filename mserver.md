@@ -44,7 +44,9 @@ HTTP статус дублируется в поле meta.status ответа ms
 * `password` - пароль, не короче 6 символов
 
 ```shell
-$ curl -H 'Content-type:application/json' -d '{"phone": "+79261111111", "password": "p@ssw0rD"}' https://www.synq.ru/mserver2-dev/v1/wallet
+$ curl -H 'Content-type:application/json' \
+ -d '{"phone": "+79261111111", "password": "p@ssw0rD"}' \
+ https://www.synq.ru/mserver2-dev/v1/wallet
 ```
 
 ```json
@@ -203,7 +205,10 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/services/grou
 ### Создание платежа в пользу провайдера
 
 ```shell
-$ curl -u -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "out", "client_payment_id": "071c6d23-7508-4e35-ad92-852308a47677", "amount": 100, "service": 1, "parameters": {"phoneNumbe": "9267101280"}}' https://www.synq.ru/mserver2-dev/v1/payments
+$ curl -u -u+79261111111:p@ssw0rD -H 'Content-type:application/json' \
+ -d '{"type": "out", "client_payment_id": "071c6d23-7508-4e35-ad92-852308a47677", \
+ "amount": 100, "service": 1, "parameters": {"phoneNumbe": "9267101280"}}' \
+ https://www.synq.ru/mserver2-dev/v1/payments
 ```
 
 ```json
@@ -241,7 +246,8 @@ $ curl -u -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type"
 ### Пользователь согласен с условиями, запускаем платеж в обработку
 
 ```shell
-$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -X POST https://www.synq.ru/mserver2-dev/v1/payments/1401089234881/pay
+$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -X POST \
+ https://www.synq.ru/mserver2-dev/v1/payments/1401089234881/pay
 ```
 ```json
 {
@@ -320,7 +326,11 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401
 ### Создание платежа в пользу провайдера
 
 ```shell
-$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "out", "client_payment_id": "e731a7e2-c553-4295-867e-1023359bee28", "amount": 100, "service": 61, "parameters": {"phoneNumber": "9267101283", "BIK": "044583151", "Name": "name", "SName": "sname", "Fam": "fam"}}' https://www.synq.ru/mserver2-dev/v1/payments
+$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' \
+ -d '{"type": "out", "client_payment_id": "e731a7e2-c553-4295-867e-1023359bee28", \
+ "amount": 100, "service": 61, "parameters": {"phoneNumber": "9267101283", \
+ "BIK": "044583151", "Name": "name", "SName": "sname", "Fam": "fam"}}' \
+ https://www.synq.ru/mserver2-dev/v1/payments
 ```
 
 ```json
@@ -452,7 +462,10 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401
 ### Следующий шаг, обновление платежа, передача запрошенных на предыдущем шаге дополнительных параметров (и всех остальных параметров тоже)
 
 ```shell
-$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"parameters": {"phoneNumber": "9267101283", "BIK": "044583151", "Name": "name", "SName": "sname", "Fam": "fam", "Pname1": "5136913818331704", "Pname2": "fio"}}' https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
+$ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' \
+ -d '{"parameters": {"phoneNumber": "9267101283", "BIK": "044583151", \
+ "Name": "name", "SName": "sname", "Fam": "fam", "Pname1": "5136913818331704", "Pname2": "fio"}}' \
+ https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
 ```
 
 ```json
