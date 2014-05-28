@@ -40,8 +40,8 @@ HTTP статус дублируется в поле meta.status ответа ms
 
 ## Создание кошелька
 
-`phone` - номер телефона в международном формате
-`password` - пароль, не короче 6 символов
+* `phone` - номер телефона в международном формате
+* `password` - пароль, не короче 6 символов
 
 ```shell
 $ curl -H 'Content-type:application/json' -d '{"phone": "+79261111111", "password": "p@ssw0rD"}' https://www.synq.ru/mserver2-dev/v1/wallet
@@ -276,6 +276,7 @@ $ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -X POST https:
 ```
 
 ### Загрузка платежа
+
 ```shell
 $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234881
 ```
@@ -369,7 +370,7 @@ $ curl -u+79261111111:p@ssw0rD -H 'Content-type:application/json' -d '{"type": "
 }
 ```
 
-### 4.2.2 Следующий шаг, запрос состояния платежа.
+### Следующий шаг, запрос состояния платежа
 
 ```shell
 $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
@@ -704,7 +705,7 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401
 ### Получение истории платежей
 
 ```shell
-$ curl -u+79099560571:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments
+$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments
 ```
 
 ```json
