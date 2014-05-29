@@ -111,9 +111,9 @@ http://localhost:8080/v1/wallet/person
     "code" : 200
   },
   "data" : {
-    "family_name" : "Янышин",
-    "given_name" : "Александр",
-    "patronymic_name" : "Сергеевич",
+    "family_name" : "Арсеньев",
+    "given_name" : "Алексей",    ,
+    "patronymic_name" : "Александрович",
     "passport_series_number" : "2202655885",
     "passport_issued_at" : "2012-02-27",
     "itn" : "330500938709",                       /* ИНН физ. лица */
