@@ -460,7 +460,7 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401
     "code" : 200,
     "next_action" : "update",
     "current_parameters" : [ {  /* current_parameters служит для показа клиенту / запроса дополнительной информации */
-      "code" : "bank",          /* параметры с editable = true нужно дать заполнить пользователю и расширить этими полями платеж вызом update */
+      "code" : "bank",          /* параметры с editable = true нужно дать заполнить пользователю и расширить этими полями платеж вызовом update */
       "name" : "Банк",
       "value" : "ЗАО \"БАНК РУССКИЙ СТАНДАРТ\"",
       "editable" : false
