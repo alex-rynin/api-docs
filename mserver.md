@@ -1,8 +1,6 @@
 API mserver 2
 =========
 
-**Table of Contents**
-
 - [Общее](#user-content-%D0%9E%D0%B1%D1%89%D0%B5%D0%B5)
 	- [Аутентификация](#user-content-%D0%90%D1%83%D1%82%D0%B5%D0%BD%D1%82%D0%B8%D1%84%D0%B8%D0%BA%D0%B0%D1%86%D0%B8%D1%8F)
 	- [Ошибки](#user-content-%D0%9E%D1%88%D0%B8%D0%B1%D0%BA%D0%B8)
