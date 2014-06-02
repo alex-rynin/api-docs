@@ -112,7 +112,7 @@ http://localhost:8080/v1/wallet/person
   },
   "data" : {
     "family_name" : "Арсеньев",
-    "given_name" : "Алексей",    ,
+    "given_name" : "Алексей",
     "patronymic_name" : "Александрович",
     "passport_series_number" : "2202655885",
     "passport_issued_at" : "2012-02-27",
