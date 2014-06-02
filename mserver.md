@@ -117,7 +117,7 @@ http://localhost:8080/v1/wallet/person
     "passport_series_number" : "2202655885",
     "passport_issued_at" : "2012-02-27",
     "itn" : "330500938709",                       /* ИНН физ. лица */
-    "ssn" : "12963855556",                        /*  СНИЛС */
+    "ssn" : "11223344595",                        /*  СНИЛС */
     "status" : "data_entered"
   }
 }
@@ -125,7 +125,7 @@ http://localhost:8080/v1/wallet/person
 
 ## Загрузка персональных данных
 ```shell
-$ curl -u+79261111111:123456 http://localhost:8080/v1/wallet/person
+$ curl -u+79261111111:p@ssw0rD http://localhost:8080/v1/wallet/person
 ```
 
 ```json
@@ -140,7 +140,7 @@ $ curl -u+79261111111:123456 http://localhost:8080/v1/wallet/person
     "passport_series_number" : "2202655885",
     "passport_issued_at" : "2012-02-27",
     "itn" : "330500938709",
-    "ssn" : "12963855556",
+    "ssn" : "11223344595",
     "status" : "data_verified",
     "verified_at" : "2014-05-29T17:06:20.066Z"
   }
