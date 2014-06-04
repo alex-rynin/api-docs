@@ -512,7 +512,19 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401
       "code" : "whatToDo",
       "name" : "Что делать?",
       "value" : "",
-      "editable" : true
+      "editable" : true,
+      "items": [ {
+	        "key": "pay",
+	        "value": "Платить"
+	    },
+	    {
+	        "key": "notPay",
+	        "value": "Не платить"
+	    },
+	    {
+	        "key": "forget",
+	        "value": "Забыть об этом"
+	    } ]
     } ]
   },
   "data" : {
