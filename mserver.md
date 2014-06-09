@@ -765,7 +765,7 @@ $ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401
 ### Последний шаг, запрос состояния платежа
 
 ```shell
-$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883y
+$ curl -u+79261111111:p@ssw0rD https://www.synq.ru/mserver2-dev/v1/payments/1401089234883
 ```
 
 ```json
