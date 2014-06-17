@@ -284,6 +284,97 @@ $ curl -u mbank:password -H "Content-type:application/json" -X DELETE http://loc
 }
 ```
 
+# Счета
+
+## Загрузка счета по идентификатору
+
+```shell
+$ curl -u mbank:password http://localhost:8080/v1/invoices/2
+```
+
+```json
+{
+  "meta" : {
+    "code" : 200
+  },
+  "data" : {
+    "id" : 2,
+    "order_id" : 42,
+    "status" : "created",
+    "created_at" : "2014-06-17T13:36:33.661Z"
+  }
+}
+```
+
+## Загрузка списка счетов
+
+```shell
+$ curl -u mbank:password http://localhost:8080/v1/invoices
+```
+
+```json
+{
+  "meta" : {
+    "code" : 200
+  },
+  "data" : [ {
+    "id" : 3,
+    "order_id" : 43,
+    "status" : "confirmed",
+    "created_at" : "2014-06-17T13:46:05.730Z"
+  }, {
+    "id" : 2,
+    "order_id" : 42,
+    "status" : "created",
+    "created_at" : "2014-06-17T13:36:33.661Z"
+  }, {
+    "id" : 1,
+    "order_id" : 41,
+    "status" : "rejected",
+    "created_at" : "2014-06-17T13:12:14.207Z"
+  } ]
+}
+```
+
+## Подтверждение счета для оплаты
+
+```shell
+$ curl -u mbank:password -X POST http://localhost:8080/v1/invoices/3/confirm
+```
+
+```json
+{
+ "meta" : {
+    "code" : 200
+  },
+  "data" : {
+    "id" : 3,
+    "order_id" : 43,
+    "status" : "confirmed",
+    "created_at" : "2014-06-17T13:46:05.730Z"
+  }
+}
+```
+
+## Отклонение счета для оплаты
+
+```shell
+$  curl -u mbank:password -X POST http://localhost:8080/v1/invoices/1/reject
+```
+
+```json
+{
+"meta" : {
+    "code" : 200
+  },
+  "data" : {
+    "id" : 1,
+    "order_id" : 41,
+    "status" : "rejected",
+    "created_at" : "2014-06-17T13:12:14.207Z"
+  }
+}
+```
 ## Типы заявок
 
 | Код типа              | Описание                                                                                                      |
@@ -302,5 +393,10 @@ $ curl -u mbank:password -H "Content-type:application/json" -X DELETE http://loc
 | DEACTIVATED           | Автоплатеж отключен                                                                                           |
 | CANCELED              | Пользователь отказался от подключения Автоплатежа                                                             |
 
+## Статусы счетов
 
-
+| Код статуса           | Описание                   |
+| :---------------------|----------------------------|
+| CREATED               | Счет создан, ожидает подтверждения или отколонеия |
+| CONFIRMED             | Счет подтвержден и будет оплачен  |
+| REJECTED              | Счет отклонен и НЕ будет оплачен  |
